@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css?family=Francois+One");
+@import url("https://fonts.googleapis.com/css?family=Anton");
+@import url("https://fonts.googleapis.com/css?family=Russo+One");
+@import url("https://fonts.googleapis.com/css?family=Cantarell");
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%; }
+
+a {
+  text-decoration: none; }
+
+li {
+  list-style-type: none; }
+
+.wrapper {
+  min-height: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0; }
+
+.header {
+  background-color: black;
+  padding: 20px; }
+  .header .container {
+    width: 1170 px;
+    margin: 0 auto; }
+    .header .container .header_logo {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .header .container .header_logoname {
+      font-family: 'Russo One', sans-serif;
+      color: white;
+      font-size: 70px; }
+
+.menu {
+  display: flex;
+  justify-content: space-around; }
+  .menu li {
+    font-family: 'Cantarell', sans-serif;
+    padding: 10px 30px;
+    border-bottom: 1px solid white; }
+    .menu li li:last-child {
+      border-bottom: none; }
+    .menu li a {
+      color: #bfbfbf;
+      font-size: 20px; }
+    .menu li a:hover {
+      color: #6e7ff3; }
+
+.menu_item_account {
+  background-image: linear-gradient(-225deg, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
+  border-radius: 8px; }
+
+.menu_link-icon img {
+  width: 20px;
+  height: 20px; }
+
+.slider_button {
+  background-color: transparent;
+  padding: 10px;
+  color: #ffffff;
+  margin: 8px;
+  background-image: linear-gradient(-225deg, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
+  border: none;
+  border-radius: 8px;
+  font-size: 15px; }
+
+.header_menu {
+  margin-bottom: 80px; }
+
+#audio a:hover {
+  color: #a64dff; }
+
+#signlogin {
+  background-color: transparent;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 15px;
+  padding: 10px;
+  width: 120px; }
+
+.aboutus {
+  background-image: url("kljklimg/Aboutus/aboutus.jpeg");
+  background-size: cover;
+  background-attachment: fixed; }
+
+/*# sourceMappingURL=mainpage.css.map */
