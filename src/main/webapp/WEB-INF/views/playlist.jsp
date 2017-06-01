@@ -47,12 +47,13 @@
         </nav>
     </header>
     <div id="content">
-        <div id="conteineraddtrack">
+        <div id="conteineraddtrack" style="background: url('data: ${playlist.bacground.mapperImage.contenttype};base64,${playlist.bacground.mapperImage.base64}')") >
             <section id="nameplaylist">
                 <img id="baseimgplaylist" src="${contextPath}/resources/img/owlchat.png">
                 <div>
-                    <<h2>Name playlist:</h2>
-                    <h2>Owner:</h2>
+                    <<h2>Name playlist: ${playlist.title}</h2>
+                    <h2>Owner:${playlist.profile.user.firstName} ${playlist.profile.user.lastName}</h2>
+
                     <a href="#"> <img  src="${contextPath}/resources/img/pencil.png"></a>
                     <a href="#">  <img  src="${contextPath}/resources/img/delete.png"></a>
                 </div>
@@ -61,6 +62,7 @@
                 <form id="formaddphoto">
                     <input type="file" name="filefoto" id="file" class="inputfile"  />
                     <label for="file">upload photo</label>
+                    <input id="secretValue" name="id_dialog" type="hidden" value="${playlist.id}"/>
                     <button id="uploadphoto" type="button">Upload</button>
                 </form>
                 <a href="#"> <img  src="${contextPath}/resources/img/pencil.png"></a>
@@ -72,9 +74,14 @@
         <form id="formaddmusic">
             <input type="file" name="fileaudio" id="addsingletrack" class="inputfile" MULTIPLE />
             <label for="addsingletrack"> Choose a file</label>
+            <input id="secretValue" name="id_dialog" type="hidden" value="${playlist.id}"/>
             <button id="uploadtrack" type="button"> Upload</button>
         </form>
         <div id="containeraudiolist">
+<c:forEach items="${playlist.sounds}" var="map">
+
+            <li style="margin:3%; width: 50%;border-radius: 10px;" class="list-group-item list-group-item-success"><span style="display: block">' + ${map.title} + '</span><audio src='${map.url}' controls/> </li>
+</c:forEach>
 
         </div>
         <!--ДОБАВЛЕНИЕ ТРЕКОВ===================================================================-->

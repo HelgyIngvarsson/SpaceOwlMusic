@@ -8,6 +8,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "description_about_users")
 public class Description {
+    public Description() {
+    }
+
+    public Description(String favoriteMusic, String hobbies, String aboutYourself, String inspiration, String musicCompose, String otherInformation) {
+        this.favoriteMusic = favoriteMusic;
+        this.hobbies = hobbies;
+        this.aboutYourself = aboutYourself;
+        this.inspiration = inspiration;
+        this.musicCompose = musicCompose;
+        this.otherInformation = otherInformation;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

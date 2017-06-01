@@ -3,6 +3,7 @@ package greenapp.service.profile;
 import greenapp.dao.ImageDao;
 import greenapp.dao.ProfileDao;
 import greenapp.model.photo.Image;
+import greenapp.model.profile.Description;
 import greenapp.model.profile.Profile;
 import greenapp.model.user.User;
 import greenapp.service.image.ImageService;
@@ -31,6 +32,7 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = new Profile();
         profile.setUser(user);
         profile.setAvatar(imageService.getDefaultImage());
+//        profile.setDescription(new Description("","","","","",""));
         profileDao.save(profile);
 
     }

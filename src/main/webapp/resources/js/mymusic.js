@@ -134,7 +134,7 @@ function call() {
         url: 'http://localhost:8080/greenapp/api/profile/sound/createFolder',
         data: map,
         success: function (data) {
-            // window.location.href = data["path"];
+            window.location.href = data["path"];
             console.log("img_id: "+idImageByPlaylist);
         },
         error: function (xhr, str) {

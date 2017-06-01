@@ -3,6 +3,7 @@ package greenapp.model.sound;
 import greenapp.model.photo.MapperImage;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -39,8 +40,16 @@ public class Sound {
     @JoinColumn(name="genre", unique = true, nullable = false)
     private Genre genre;
 
-    @ManyToMany(mappedBy = "sounds")
-    private Set<Playlists> playlists;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "sounds")
+    private Set<Playlists> playlists ;
+
+    public Set<Playlists> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(Set<Playlists> playlists) {
+        this.playlists = playlists;
+    }
 
     public Long getId() {
         return id;
@@ -106,11 +115,11 @@ public class Sound {
         this.genre = genre;
     }
 
-    public Set<Playlists> getPlaylists() {
-        return playlists;
-    }
-
-    public void setPlaylists(Set<Playlists> playlists) {
-        this.playlists = playlists;
-    }
+//    public Set<Playlists> getPlaylists() {
+//        return playlists;
+//    }
+//
+//    public void setPlaylists(Set<Playlists> playlists) {
+//        this.playlists = playlists;
+//    }
 }

@@ -1,8 +1,12 @@
 package greenapp.controller;
 
+import greenapp.dao.SoundDao;
 import greenapp.model.photo.Image;
+import greenapp.model.sound.Sound;
 import greenapp.service.image.ImageService;
 import greenapp.service.profile.ProfileService;
+import greenapp.service.sound.PlaylistService;
+import greenapp.service.sound.SoundService;
 import greenapp.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +31,11 @@ public class ProfileController {
     @Autowired
     UserService userService;
 
-    @Transactional
+    @Autowired
+    PlaylistService pl;
+    @Autowired
+    SoundDao soundService;
+
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String registration(Model model) {
         Image image = profileService.getUserAvatar(userService.getCurrentUser());
