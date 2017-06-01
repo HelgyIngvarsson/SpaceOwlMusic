@@ -3,17 +3,18 @@ package greenapp.model.sound;
 import greenapp.model.photo.Image;
 import greenapp.model.profile.Profile;
 import greenapp.model.user.Role;
-import greenapp.model.user.User;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by Dmitro on 23.05.2017.
  */
 @Entity
-@Table(name="sounds_playst")
+@Table(name = "sounds_playst")
 public class Playlists {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,30 +22,39 @@ public class Playlists {
 
 
     @OneToOne(optional = false)
-    @JoinColumn(name="profile_id", unique = true, nullable = false)
+    @JoinColumn(name = "profile_id", unique = true, nullable = false)
     private Profile profile;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
 
-    @Column(name="access")
+    @Column(name = "access")
     private String access;
 
 
-    @ManyToMany
-    @JoinTable(name = "playst_sounds", joinColumns = @JoinColumn(name = "sounds_playst_id"),
-            inverseJoinColumns = @JoinColumn(name = "sounds_id"))
-    private Set<Sound> sounds;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "image_id", unique = true, nullable = false)
+    private Image cover;
 
-    public Set<Sound> getSounds() {
+    @OneToOne(optional = false)
+    @JoinColumn(name = "background", unique = true, nullable = false)
+    private Image bacground;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "playlists_sound", joinColumns = @JoinColumn(name = "playlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "sound_id"))
+    private Set<Audio> sounds;
+
+    public Set<Audio> getSounds() {
         return sounds;
     }
 
-    public void setSounds(Set<Sound> sounds) {
+    public void setSounds(Set<Audio> sounds) {
         this.sounds = sounds;
     }
 
@@ -54,6 +64,10 @@ public class Playlists {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void add(Audio sound) {
+        sounds.add(sound);
     }
 
     public Profile getProfile() {
@@ -96,14 +110,12 @@ public class Playlists {
         this.cover = cover;
     }
 
-    @OneToOne(optional = false)
-    @JoinColumn(name="image_id", unique = true, nullable = false)
-    private Image cover;
 
+    public Image getBacground() {
+        return bacground;
+    }
 
-
-
-
-
-
+    public void setBacground(Image bacground) {
+        this.bacground = bacground;
+    }
 }

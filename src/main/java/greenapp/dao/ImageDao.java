@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface ImageDao extends JpaRepository<Image, Long> {
     Image findByType(String type);
-    List<Image> findByProfile(Profile profile);
-    public List<Image> findById(int Id);
+     List<Image> findByProfile(Profile profile);
+     Image findById(long id);
 
 }

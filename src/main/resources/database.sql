@@ -380,3 +380,14 @@
 -- 2);
 --
 --
+
+
+CREATE TABLE playlists_sound (
+  playlist_id INT NOT NULL,
+  sound_id INT NOT NULL,
+
+  FOREIGN KEY (playlist_id) REFERENCES  sounds_playst(id),
+  FOREIGN KEY (sound_id) REFERENCES sound (id),
+
+  UNIQUE (playlist_id, sound_id)
+)

@@ -2,6 +2,8 @@ package greenapp.model.photo;
 
 import greenapp.model.dialog.Dialog;
 import greenapp.model.profile.Profile;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
@@ -31,7 +33,7 @@ public class Image {
     @JoinColumn(name = "mapp_id", nullable = false)
     private MapperImage mapperImage;
 
-
+    @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "image_profile", nullable = true)
     private Profile profile;

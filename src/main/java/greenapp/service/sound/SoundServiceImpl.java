@@ -1,15 +1,16 @@
 package greenapp.service.sound;
 
 import greenapp.dao.MapperSoundDao;
+import greenapp.dao.PlaylistDao;
 import greenapp.dao.SoundDao;
-import greenapp.model.sound.Genre;
-import greenapp.model.sound.MapperSounds;
-import greenapp.model.sound.Sound;
+import greenapp.model.sound.*;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Dmitro on 27.05.2017.
@@ -21,19 +22,22 @@ public class SoundServiceImpl implements SoundService {
     @Autowired
     MapperSoundDao mapperSoundDao;
 
+    @Autowired
+    PlaylistDao playlistDao;
+
     @Override
-    public String addSound(byte[] soundByte) {
-        MapperSounds mapperSounds = new MapperSounds();
-        mapperSounds.setPath(saveSoundForHard(soundByte));
-        mapperSounds.setName("sound"+mapperSoundDao.findAll().size());
-        mapperSoundDao.save(mapperSounds);
-        Sound sound = new Sound();
-        sound.setMapperSounds(mapperSounds);
+    public String addSound(byte[] soundByte, Playlists playlists) {
 
-        sound.setTitle("title sound test" + mapperSoundDao.findAll().size());
-        soundDao.save(sound);
 
-        return mapperSounds.getName();
+
+//        playlistDao.save(playlists);
+//        Set<Sound> p=  playlists.getSounds();
+//        p.add(sound);
+//        playlists.setSounds(p);
+//        playlistDao.save(playlists);
+//
+
+            return null;
     }
 
     @Override
