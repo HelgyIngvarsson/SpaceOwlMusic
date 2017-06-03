@@ -6,6 +6,7 @@ import greenapp.dao.SoundDao;
 import greenapp.model.sound.Audio;
 import greenapp.model.sound.MapperSounds;
 import greenapp.model.sound.Playlists;
+import greenapp.service.sound.AudioService;
 import greenapp.service.sound.PlaylistService;
 import greenapp.service.sound.SoundService;
 import org.apache.commons.io.IOUtils;
@@ -37,6 +38,9 @@ public class RestAudioController {
     PlaylistService playlistService;
     @Autowired
     SoundDao soundDao;
+
+    @Autowired
+    AudioService audioService;
 
     @RequestMapping(value = "api/profile/putAudio", method = RequestMethod.POST, produces = {"application/json"})
     public @ResponseBody
@@ -72,7 +76,7 @@ public class RestAudioController {
             h.put("path", path);
             h.put("name", "test");
             audio.setUrl(path);
-            audio = soundDao.save(audio);
+            audioService.save(audio);
             playlists.add(audio);
             arrayList.add(h);
         }
