@@ -1,6 +1,9 @@
 package greenapp.service.sound;
 
 import greenapp.model.sound.Audio;
+import greenapp.model.sound.MapperSounds;
+
+import java.util.List;
 
 /**
  * author Ghavrilin Oleg
@@ -9,6 +12,8 @@ import greenapp.model.sound.Audio;
  */
 
 public interface AudioService {
+
     void save(Audio audio);
 
+    public List<MapperSounds> getAll();
 }

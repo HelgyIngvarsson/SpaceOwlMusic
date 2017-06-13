@@ -9,6 +9,7 @@ import greenapp.model.sound.Playlists;
 import greenapp.service.sound.AudioService;
 import greenapp.service.sound.PlaylistService;
 import greenapp.service.sound.SoundService;
+import greenapp.utils.CompareMP3;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -28,14 +29,19 @@ import java.util.Map;
  */
 @RestController
 public class RestAudioController {
+
     @Autowired
     MapperSoundDao mapperSoundDao;
+
     @Autowired
     PlaylistDao playlistDao;
+
     @Autowired
     SoundService soundService;
+
     @Autowired
     PlaylistService playlistService;
+
     @Autowired
     SoundDao soundDao;
 
@@ -77,6 +83,12 @@ public class RestAudioController {
             h.put("name", "test");
             audio.setUrl(path);
             audioService.save(audio);
+
+            Process proc = Runtime.getRuntime().exec("java  -jar C:\\Users\\ЖЛЗК\\IdeaProjects\\compareUtil\\out\\artifacts\\compareUtil_jar\\compareUtil.jar "+audio.getId()+" \""+audio.getMapperSounds().getPath()+"\"");
+
+            InputStream in = proc.getInputStream();
+            InputStream err = proc.getErrorStream();
+
             playlists.add(audio);
             arrayList.add(h);
         }

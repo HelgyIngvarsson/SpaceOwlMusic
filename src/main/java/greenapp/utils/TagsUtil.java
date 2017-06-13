@@ -1,6 +1,7 @@
 package greenapp.utils;
 
 import greenapp.model.sound.Audio;
+import greenapp.model.sound.MapperSounds;
 
 import java.io.*;
 import java.util.Arrays;
@@ -31,6 +32,37 @@ public class TagsUtil {
         }
         return audio;
     }
+    public static Audio getSoundMetaData(MapperSounds mapperSounds) throws IOException
+    {
+        Audio audio = new Audio();
+        audio.setMapperSounds(mapperSounds);
+        File file  = new File(mapperSounds.getPath());
+
+        InputStream in = new FileInputStream(file.getAbsolutePath());
+
+        byte [] byteArray = inputStreamToByteArray(in);
+        byte [] tag128 = Arrays.copyOfRange(byteArray,byteArray.length-128,byteArray.length);
+        byte [] tag227 = Arrays.copyOfRange(byteArray,byteArray.length-227,byteArray.length);
+
+        if(new String(Arrays.copyOfRange(tag128,0,3)).equals("TAG"))
+        {
+            return  audio = getID3(audio,tag128);
+        }else if(new String(Arrays.copyOfRange(tag227,0,4)).equals("TAG+"))
+        {
+            return audio = getID3v1(audio,tag227);
+        }
+        return audio;
+    }
+
+    public  static byte[] getByteArrayFromMapper(MapperSounds mapperSounds) throws IOException {
+
+        File file = new File(mapperSounds.getPath());
+
+        InputStream in = new FileInputStream(file.getAbsolutePath());
+
+        byte[] bytes = inputStreamToByteArray(in);
+        return bytes;
+    }
 
 //    getting Tags 128 bytes
     private static Audio  getID3(Audio audio,byte[] tags)
@@ -55,6 +87,8 @@ public class TagsUtil {
 //        soundMetaData.setComment(new String(Arrays.copyOfRange(tags,97,127)));
         return audio;
     }
+
+
 
     private static byte[] inputStreamToByteArray(InputStream inStream) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

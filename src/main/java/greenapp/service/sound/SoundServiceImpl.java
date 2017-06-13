@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -77,5 +78,10 @@ public class SoundServiceImpl implements SoundService {
         }
 int t=3;
         return bytes ;
+    }
+
+    @Override
+    public List<MapperSounds> getAll() {
+        return mapperSoundDao.findAll();
     }
 }
